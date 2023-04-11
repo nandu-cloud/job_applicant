@@ -18,7 +18,7 @@ port_app=9999
 host_app="0.0.0.0"
 #port_app=os.environ["JOB_PORT"]
 #host_app=os.environ["JOB_HOST"]
-from werkzeug import secure_filename
+from werkzeug.utils import secure_filename
 
 from random import *
 # port_app=5000
@@ -195,7 +195,7 @@ def job_search():
 def job_details():
 
   job_id=request.form["job_id"].strip()
-  print job_id
+  print (job_id)
   
 
   return render_template('job_details.html',data=jobs.query.filter(jobs.id == job_id).first())
@@ -244,7 +244,7 @@ def apply():
       return render_template('job_details.html',data=jobs.query.filter(jobs.id == job_id).first())
 
     
-    print 'file saveda as'+filename
+    print ('file saveda as'+filename)
 
     new_applicant = applicant(fullname=fn, dob=dob, yop=yop, email_id=email,  contact_no=tel1, contact_no_alt=tel2, university=u_name, total_exp=exp, ref_name=ref_name, cover_letter=mes, resume_name=filename, job_id=job_id)
     db.session.add(new_applicant)
